@@ -1,0 +1,6 @@
+framework module Pods_CFL_Viewer {
+  umbrella header "Pods-CFL Viewer-umbrella.h"
+
+  export *
+  module * { export * }
+}

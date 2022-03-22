@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>268484686099-r6o38j2l9jip1d542gr5ll2bnkal9t75.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.268484686099-r6o38j2l9jip1d542gr5ll2bnkal9t75</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCdcuIazwN3RbZNQyC1VuaKmqJfsvCnrcc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>268484686099</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>denny-task.CFL-Viewer</string>
+	<key>PROJECT_ID</key>
+	<string>cfl-viewer</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cfl-viewer.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:268484686099:ios:3ed24c68a0f1b49e34eae6</string>
+</dict>
+</plist>

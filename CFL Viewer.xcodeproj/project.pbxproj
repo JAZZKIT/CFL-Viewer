@@ -13,11 +13,19 @@
 		B0429A3A27E4A0CA0065E5E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0429A3827E4A0CA0065E5E0 /* LaunchScreen.storyboard */; };
 		B0708D0227E77BB600911389 /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0708D0127E77BB600911389 /* OnboardingVC.swift */; };
 		B0708D0427E77CD300911389 /* OnboardingContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0708D0327E77CD300911389 /* OnboardingContainerVC.swift */; };
+		B086CF3227E86E8C00E778FB /* LocalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B086CF3127E86E8C00E778FB /* LocalState.swift */; };
+		B086CF3427E8BEE700E778FB /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B086CF3327E8BEE700E778FB /* LoginView.swift */; };
+		B086CF3827E8BF7000E778FB /* UITextField+SecureToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B086CF3727E8BF7000E778FB /* UITextField+SecureToggle.swift */; };
+		B086CF3D27E8FDDB00E778FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B086CF3C27E8FDDB00E778FB /* GoogleService-Info.plist */; };
 		B08B924727E728D400DA6C74 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08B924627E728D400DA6C74 /* LoginVC.swift */; };
 		B08B924A27E7291900DA6C74 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08B924927E7291900DA6C74 /* HomeVC.swift */; };
+		D3355828268BD4CB98B98995 /* Pods_CFL_Viewer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C3289F1A15354DDE34C0C2 /* Pods_CFL_Viewer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		65E4DE75FE5F6F0407D58F59 /* Pods-CFL Viewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CFL Viewer.release.xcconfig"; path = "Target Support Files/Pods-CFL Viewer/Pods-CFL Viewer.release.xcconfig"; sourceTree = "<group>"; };
+		8C29A57909D7F1561582B761 /* Pods-CFL Viewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CFL Viewer.debug.xcconfig"; path = "Target Support Files/Pods-CFL Viewer/Pods-CFL Viewer.debug.xcconfig"; sourceTree = "<group>"; };
+		93C3289F1A15354DDE34C0C2 /* Pods_CFL_Viewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CFL_Viewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0429A2A27E4A0C90065E5E0 /* CFL Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CFL Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0429A2D27E4A0C90065E5E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0429A2F27E4A0C90065E5E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +34,10 @@
 		B0429A3B27E4A0CA0065E5E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0708D0127E77BB600911389 /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		B0708D0327E77CD300911389 /* OnboardingContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerVC.swift; sourceTree = "<group>"; };
+		B086CF3127E86E8C00E778FB /* LocalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalState.swift; sourceTree = "<group>"; };
+		B086CF3327E8BEE700E778FB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		B086CF3727E8BF7000E778FB /* UITextField+SecureToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+SecureToggle.swift"; sourceTree = "<group>"; };
+		B086CF3C27E8FDDB00E778FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B08B924627E728D400DA6C74 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		B08B924927E7291900DA6C74 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -35,17 +47,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3355828268BD4CB98B98995 /* Pods_CFL_Viewer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		137F24E98F39F5709F1DC7B3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				93C3289F1A15354DDE34C0C2 /* Pods_CFL_Viewer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B0429A2127E4A0C90065E5E0 = {
 			isa = PBXGroup;
 			children = (
 				B0429A2C27E4A0C90065E5E0 /* CFL Viewer */,
 				B0429A2B27E4A0C90065E5E0 /* Products */,
+				CFC20CC6591F54A93F8B3684 /* Pods */,
+				137F24E98F39F5709F1DC7B3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,11 +83,30 @@
 		B0429A2C27E4A0C90065E5E0 /* CFL Viewer */ = {
 			isa = PBXGroup;
 			children = (
+				B086CF3627E8BF3800E778FB /* Extansions */,
+				B086CF3027E86E7A00E778FB /* Utilities */,
 				B08B924327E4D22700DA6C74 /* Modules */,
 				B08B924227E4B9A100DA6C74 /* Support */,
 				B0429A3B27E4A0CA0065E5E0 /* Info.plist */,
+				B086CF3C27E8FDDB00E778FB /* GoogleService-Info.plist */,
 			);
 			path = "CFL Viewer";
+			sourceTree = "<group>";
+		};
+		B086CF3027E86E7A00E778FB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				B086CF3127E86E8C00E778FB /* LocalState.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		B086CF3627E8BF3800E778FB /* Extansions */ = {
+			isa = PBXGroup;
+			children = (
+				B086CF3727E8BF7000E778FB /* UITextField+SecureToggle.swift */,
+			);
+			path = Extansions;
 			sourceTree = "<group>";
 		};
 		B08B924227E4B9A100DA6C74 /* Support */ = {
@@ -101,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				B08B924627E728D400DA6C74 /* LoginVC.swift */,
+				B086CF3327E8BEE700E778FB /* LoginView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -113,6 +156,16 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		CFC20CC6591F54A93F8B3684 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8C29A57909D7F1561582B761 /* Pods-CFL Viewer.debug.xcconfig */,
+				65E4DE75FE5F6F0407D58F59 /* Pods-CFL Viewer.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -120,9 +173,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B0429A3E27E4A0CA0065E5E0 /* Build configuration list for PBXNativeTarget "CFL Viewer" */;
 			buildPhases = (
+				9B6EAE0E4B004EADE9C93939 /* [CP] Check Pods Manifest.lock */,
 				B0429A2627E4A0C90065E5E0 /* Sources */,
 				B0429A2727E4A0C90065E5E0 /* Frameworks */,
 				B0429A2827E4A0C90065E5E0 /* Resources */,
+				1F6B18272D6FF2021AE41569 /* [CP] Embed Pods Frameworks */,
+				6D698DD6C6AAD56696FA241D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -173,10 +229,70 @@
 			files = (
 				B0429A3A27E4A0CA0065E5E0 /* LaunchScreen.storyboard in Resources */,
 				B0429A3727E4A0CA0065E5E0 /* Assets.xcassets in Resources */,
+				B086CF3D27E8FDDB00E778FB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1F6B18272D6FF2021AE41569 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CFL Viewer/Pods-CFL Viewer-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CFL Viewer/Pods-CFL Viewer-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CFL Viewer/Pods-CFL Viewer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6D698DD6C6AAD56696FA241D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CFL Viewer/Pods-CFL Viewer-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CFL Viewer/Pods-CFL Viewer-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CFL Viewer/Pods-CFL Viewer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9B6EAE0E4B004EADE9C93939 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CFL Viewer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B0429A2627E4A0C90065E5E0 /* Sources */ = {
@@ -184,11 +300,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B08B924A27E7291900DA6C74 /* HomeVC.swift in Sources */,
+				B086CF3227E86E8C00E778FB /* LocalState.swift in Sources */,
 				B0708D0427E77CD300911389 /* OnboardingContainerVC.swift in Sources */,
 				B0429A2E27E4A0C90065E5E0 /* AppDelegate.swift in Sources */,
 				B0708D0227E77BB600911389 /* OnboardingVC.swift in Sources */,
 				B08B924727E728D400DA6C74 /* LoginVC.swift in Sources */,
+				B086CF3427E8BEE700E778FB /* LoginView.swift in Sources */,
 				B0429A3027E4A0C90065E5E0 /* SceneDelegate.swift in Sources */,
+				B086CF3827E8BF7000E778FB /* UITextField+SecureToggle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +443,7 @@
 		};
 		B0429A3F27E4A0CA0065E5E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C29A57909D7F1561582B761 /* Pods-CFL Viewer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -350,6 +470,7 @@
 		};
 		B0429A4027E4A0CA0065E5E0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65E4DE75FE5F6F0407D58F59 /* Pods-CFL Viewer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

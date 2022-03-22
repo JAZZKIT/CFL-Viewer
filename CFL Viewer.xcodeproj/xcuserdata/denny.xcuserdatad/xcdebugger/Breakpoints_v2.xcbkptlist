@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "F4C286D0-84CF-47C0-8248-07444554A16E"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FF506D6B-5E85-495E-B7C3-36C3D6333327"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CFL Viewer/Modules/Onboarding/OnboardingVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "OnboardingVC"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "FF506D6B-5E85-495E-B7C3-36C3D6333327 - 65d2cac6806d2598"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CFL_Viewer.OnboardingVC.__allocating_init(imageName: Swift.String, titleText: Swift.String, subtitleText: Swift.String) -&gt; CFL_Viewer.OnboardingVC"
+                  moduleName = "CFL Viewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denny/Developer/mobile/Swift/CFL%20Viewer/CFL%20Viewer/Modules/Onboarding/OnboardingVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "FF506D6B-5E85-495E-B7C3-36C3D6333327 - dc964b14c2981cc7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CFL_Viewer.OnboardingVC.init(imageName: Swift.String, titleText: Swift.String, subtitleText: Swift.String) -&gt; CFL_Viewer.OnboardingVC"
+                  moduleName = "CFL Viewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/denny/Developer/mobile/Swift/CFL%20Viewer/CFL%20Viewer/Modules/Onboarding/OnboardingVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "136">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

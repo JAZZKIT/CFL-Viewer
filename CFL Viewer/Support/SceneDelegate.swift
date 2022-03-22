@@ -13,7 +13,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     let onboardingContainerVC = OnboardingContainerVC()
     let loginVC = LoginVC()
-    let mainVC = HomeVC()
+    let homeVC = HomeVC()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -22,36 +22,34 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         window?.backgroundColor = .systemBackground
-        //window?.rootViewController = GFTabBarContoller()
         window?.makeKeyAndVisible()
 
 //        loginVC.delegate = self
         onboardingContainerVC.delegateOnboarding = self
-//
+        
 //        registerForNotification()
 //
-        displayLogin()
+        displayNextScreen()
     }
     
     private func displayLogin() {
-        //setRootVC(loginVC)
-        setRootVC(onboardingContainerVC)
+        setRootVC(loginVC)
     }
 
     private func displayNextScreen() {
-        //if LocalState.hasOnboarded {
-            prepMainView()
-            setRootVC(mainVC)
-//        } else {
-//            setRootVC(onboardingContainerVC)
-//        }
+        if LocalState.hasOnboarded {
+            prepHomeView()
+            setRootVC(loginVC)
+        } else {
+            setRootVC(onboardingContainerVC)
+        }
     }
 //
 //    private func registerForNotification() {
 //        NotificationCenter.default.addObserver(self, selector: #selector(didLogout), name: .Logout, object: nil)
 //    }
 //
-    private func prepMainView() {
+    private func prepHomeView() {
         //mainVC.setStatusBar()
         UINavigationBar.appearance().isTranslucent = false
         //UINavigationBar.appearance().backgroundColor = appColor
@@ -69,8 +67,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 // MARK: - OnboardingContainerVCDelegate
 extension SceneDelegate: OnboardingContainerVCDelegate {
     func didFinishOnboarding() {
-        //LocalState.hasOnboarded = true
-        prepMainView()
+        LocalState.hasOnboarded = true
+        prepHomeView()
         setRootVC(loginVC)
     }
 }
