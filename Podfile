@@ -6,5 +6,7 @@ target 'CFL Viewer' do
   use_frameworks!
 
   # Pods for CFL Viewer
-  pod 'FirebaseUI'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
 end

@@ -32,6 +32,7 @@
 		B0429A3627E4A0CA0065E5E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0429A3927E4A0CA0065E5E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0429A3B27E4A0CA0065E5E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B04BCF5527EB60C500D4D1FF /* CFL Viewer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CFL Viewer.entitlements"; sourceTree = "<group>"; };
 		B0708D0127E77BB600911389 /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		B0708D0327E77CD300911389 /* OnboardingContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerVC.swift; sourceTree = "<group>"; };
 		B086CF3127E86E8C00E778FB /* LocalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalState.swift; sourceTree = "<group>"; };
@@ -83,6 +84,7 @@
 		B0429A2C27E4A0C90065E5E0 /* CFL Viewer */ = {
 			isa = PBXGroup;
 			children = (
+				B04BCF5527EB60C500D4D1FF /* CFL Viewer.entitlements */,
 				B086CF3627E8BF3800E778FB /* Extansions */,
 				B086CF3027E86E7A00E778FB /* Utilities */,
 				B08B924327E4D22700DA6C74 /* Modules */,
@@ -162,7 +164,6 @@
 				8C29A57909D7F1561582B761 /* Pods-CFL Viewer.debug.xcconfig */,
 				65E4DE75FE5F6F0407D58F59 /* Pods-CFL Viewer.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -178,7 +179,6 @@
 				B0429A2727E4A0C90065E5E0 /* Frameworks */,
 				B0429A2827E4A0C90065E5E0 /* Resources */,
 				1F6B18272D6FF2021AE41569 /* [CP] Embed Pods Frameworks */,
-				6D698DD6C6AAD56696FA241D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -251,23 +251,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CFL Viewer/Pods-CFL Viewer-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6D698DD6C6AAD56696FA241D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CFL Viewer/Pods-CFL Viewer-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CFL Viewer/Pods-CFL Viewer-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CFL Viewer/Pods-CFL Viewer-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9B6EAE0E4B004EADE9C93939 /* [CP] Check Pods Manifest.lock */ = {
@@ -447,6 +430,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "CFL Viewer/CFL Viewer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -474,6 +458,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "CFL Viewer/CFL Viewer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
