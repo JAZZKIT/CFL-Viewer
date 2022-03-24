@@ -150,7 +150,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
   }
   
-  // Transforms the request URL and opens it.
+  // Transforms the request URL and opens it.x
   NSURL *requestURL = [request externalUserAgentRequestURL];
   requestURL = _URLTransformation(requestURL);
   BOOL openedInBrowser = [[UIApplication sharedApplication] openURL:requestURL];

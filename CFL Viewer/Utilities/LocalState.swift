@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 enum LocalState {
     private enum Keys: String {
@@ -20,5 +21,10 @@ enum LocalState {
             UserDefaults.standard.set(newValue, forKey: Keys.hasOnboarded.rawValue)
             UserDefaults.standard.synchronize()
         }
+    }
+    
+    static var isLogin: Bool {
+        guard Auth.auth().currentUser != nil else { return false }
+        return true
     }
 }

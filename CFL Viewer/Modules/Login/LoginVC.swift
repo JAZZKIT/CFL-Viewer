@@ -9,13 +9,11 @@ import UIKit
 import AuthenticationServices
 import CryptoKit
 import FirebaseAuth
+import GoogleSignIn
+import Firebase
 
 protocol LoginVCDelegate: AnyObject {
     func didLogin()
-}
-
-protocol LogoutDelegate: AnyObject {
-    func didLogout()
 }
 
 class LoginVC: UIViewController {
@@ -25,9 +23,11 @@ class LoginVC: UIViewController {
     
     let loginView = LoginView()
     let signInButton = UIButton(type: .system)
-    let googleButton = UIButton(type: .system)
-    let appleButton = ASAuthorizationAppleIDButton()
     let errorMessageLabel = UILabel()
+    
+    let authStackView = UIStackView()
+    let googleButton = GIDSignInButton()
+    let appleButton = ASAuthorizationAppleIDButton()
     
     fileprivate var currentNonce: String?
     
@@ -108,25 +108,20 @@ extension LoginVC {
         signInButton.addTarget(self, action: #selector(signInTapped), for: .primaryActionTriggered)
         
         appleButton.translatesAutoresizingMaskIntoConstraints = false
-        //appleButton.configuration = .filled()
-        //appleButton.configuration?.imagePadding = 8
-        //appleButton.configuration?.image = UIImage(systemName: "applelogo")
-        //appleButton.setTitle("Sign In with Apple", for: [])
         appleButton.addTarget(self, action: #selector(handelSignInWithAppleTapped), for: .touchUpInside)
         
         googleButton.translatesAutoresizingMaskIntoConstraints = false
-        googleButton.configuration = .filled()
-        googleButton.configuration?.imagePadding = 8
-        //googleButton.configuration?.image = UIImage(named: "google")
-        googleButton.setImage(UIImage(named: "google"), for: .normal)
-        googleButton.setTitle("Sign In with Google", for: [])
-        //googleButton.addTarget(self, action: #selector(signInTapped), for: .primaryActionTriggered)
+        googleButton.addTarget(self, action: #selector(handelSignInWithGoogleTapped), for: .touchUpInside)
         
         errorMessageLabel.translatesAutoresizingMaskIntoConstraints = false
         errorMessageLabel.textAlignment = .center
         errorMessageLabel.textColor = .systemRed
         errorMessageLabel.numberOfLines = 0
         errorMessageLabel.isHidden = true
+        
+        authStackView.translatesAutoresizingMaskIntoConstraints = false
+        authStackView.axis = .horizontal
+        authStackView.spacing = 20
     }
     
     private func layout() {
@@ -134,9 +129,11 @@ extension LoginVC {
         view.addSubview(subtitleLabel)
         view.addSubview(loginView)
         view.addSubview(signInButton)
-        view.addSubview(appleButton)
-        view.addSubview(googleButton)
         view.addSubview(errorMessageLabel)
+        
+        authStackView.addArrangedSubview(appleButton)
+        authStackView.addArrangedSubview(googleButton)
+        view.addSubview(authStackView)
         
         titleLeadingAnchor = titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leadingEdgeOffScreen)
         titleLeadingAnchor?.isActive = true
@@ -147,8 +144,6 @@ extension LoginVC {
         NSLayoutConstraint.activate([
             subtitleLabel.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 3),
             titleLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor),
-            
-            // subtitleLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
             subtitleLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
         ])
         
@@ -161,23 +156,14 @@ extension LoginVC {
         
         NSLayoutConstraint.activate([
             signInButton.topAnchor.constraint(equalToSystemSpacingBelow: loginView.bottomAnchor, multiplier: 2),
-            signInButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 8),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: signInButton.trailingAnchor, multiplier: 8)
-            //signInButton.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+            signInButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 4),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: signInButton.trailingAnchor, multiplier: 4)
         ])
         
         NSLayoutConstraint.activate([
-            appleButton.topAnchor.constraint(equalToSystemSpacingBelow: signInButton.bottomAnchor, multiplier: 2),
-            appleButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 8),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: appleButton.trailingAnchor, multiplier: 8)
-            //signInButton.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
-        ])
-        
-        NSLayoutConstraint.activate([
-            googleButton.topAnchor.constraint(equalToSystemSpacingBelow: appleButton.bottomAnchor, multiplier: 2),
-            googleButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 8),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: googleButton.trailingAnchor, multiplier: 8)
-            //signInButton.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+            authStackView.topAnchor.constraint(equalToSystemSpacingBelow: signInButton.bottomAnchor, multiplier: 6),
+            authStackView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 4),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: authStackView.trailingAnchor, multiplier: 4)
         ])
         
         NSLayoutConstraint.activate([
@@ -195,11 +181,58 @@ extension LoginVC {
         login()
     }
     
-    @objc func handelSignInWithAppleTapped() {
-        performSignIn()
+    @objc func handelSignInWithGoogleTapped() {
+        performGoogleSignIn()
     }
     
-    func performSignIn() {
+    // MARK: - Auth with Google
+    func performGoogleSignIn() {
+        
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        
+        // Create Google Sign In configuration object.
+        let config = GIDConfiguration(clientID: clientID)
+        
+        // Start the sign in flow!
+        GIDSignIn.sharedInstance.signIn(with: config, presenting: self) { [unowned self] user, error in
+            
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            guard
+                let authentication = user?.authentication,
+                let idToken = authentication.idToken
+            else {
+                return
+            }
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
+            
+            // ...
+            
+            Auth.auth().signIn(with: credential) { authResult, error in
+                if let error = error {
+                    print(error)
+                }
+                
+                guard let user = authResult?.user else { return }
+                
+                print(user.displayName ?? "Success")
+                self.delegate?.didLogin()
+                
+            }
+        }
+    }
+    
+    // MARK: - Auth with Apple
+    
+    @objc func handelSignInWithAppleTapped() {
+        performAppleSignIn()
+    }
+    
+    func performAppleSignIn() {
         let request = createAppleIDRequest()
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         
@@ -214,8 +247,8 @@ extension LoginVC {
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
         
-        let nonce = randomNonceString()
-        request.nonce = sha256(nonce)
+        let nonce = NonceCrypto.randomNonceString()
+        request.nonce = NonceCrypto.sha256(nonce)
         currentNonce = nonce
         
         return request
@@ -258,6 +291,7 @@ extension LoginVC {
     }
 }
 
+// MARK: - Auth with Apple
 
 extension LoginVC: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
@@ -279,13 +313,12 @@ extension LoginVC: ASAuthorizationControllerDelegate {
             
             Auth.auth().signIn(with: credential) { (authResult, error) in
                 if let user = authResult?.user {
-                    print("Nice: uid - \(user.uid) email - \(String(describing: user.email) ?? "unknown")")
+                    print("Nice: uid - \(user.uid) email - \(String(describing: user.email))")
                 }
             }
         }
     }
 }
-
 
 extension LoginVC: ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
@@ -293,7 +326,7 @@ extension LoginVC: ASAuthorizationControllerPresentationContextProviding {
     }
 }
 
-
+// MARK: - Animation
 extension LoginVC {
     private func animate() {
         let duration = 0.8
@@ -317,55 +350,4 @@ extension LoginVC {
         }
         animator3.startAnimation(afterDelay: 0.2)
     }
-}
-
-
-extension LoginVC {
-    // Adapted from https://auth0.com/docs/api-auth/tutorials/nonce#generate-a-cryptographically-random-nonce
-    private func randomNonceString(length: Int = 32) -> String {
-        precondition(length > 0)
-        let charset: [Character] =
-        Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-        var result = ""
-        var remainingLength = length
-        
-        while remainingLength > 0 {
-            let randoms: [UInt8] = (0 ..< 16).map { _ in
-                var random: UInt8 = 0
-                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
-                if errorCode != errSecSuccess {
-                    fatalError(
-                        "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
-                    )
-                }
-                return random
-            }
-            
-            randoms.forEach { random in
-                if remainingLength == 0 {
-                    return
-                }
-                
-                if random < charset.count {
-                    result.append(charset[Int(random)])
-                    remainingLength -= 1
-                }
-            }
-        }
-        
-        return result
-    }
-    
-    @available(iOS 13, *)
-    private func sha256(_ input: String) -> String {
-        let inputData = Data(input.utf8)
-        let hashedData = SHA256.hash(data: inputData)
-        let hashString = hashedData.compactMap {
-            String(format: "%02x", $0)
-        }.joined()
-        
-        return hashString
-    }
-    
-    
 }

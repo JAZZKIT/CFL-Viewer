@@ -11,6 +11,8 @@
 		B0429A3027E4A0C90065E5E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0429A2F27E4A0C90065E5E0 /* SceneDelegate.swift */; };
 		B0429A3727E4A0CA0065E5E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0429A3627E4A0CA0065E5E0 /* Assets.xcassets */; };
 		B0429A3A27E4A0CA0065E5E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0429A3827E4A0CA0065E5E0 /* LaunchScreen.storyboard */; };
+		B0513FD427EC9AD90084B913 /* NonceCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0513FD327EC9AD90084B913 /* NonceCrypto.swift */; };
+		B0513FD627ECCB3F0084B913 /* NSNotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0513FD527ECCB3F0084B913 /* NSNotificationName.swift */; };
 		B0708D0227E77BB600911389 /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0708D0127E77BB600911389 /* OnboardingVC.swift */; };
 		B0708D0427E77CD300911389 /* OnboardingContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0708D0327E77CD300911389 /* OnboardingContainerVC.swift */; };
 		B086CF3227E86E8C00E778FB /* LocalState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B086CF3127E86E8C00E778FB /* LocalState.swift */; };
@@ -33,6 +35,8 @@
 		B0429A3927E4A0CA0065E5E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0429A3B27E4A0CA0065E5E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B04BCF5527EB60C500D4D1FF /* CFL Viewer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CFL Viewer.entitlements"; sourceTree = "<group>"; };
+		B0513FD327EC9AD90084B913 /* NonceCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonceCrypto.swift; sourceTree = "<group>"; };
+		B0513FD527ECCB3F0084B913 /* NSNotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotificationName.swift; sourceTree = "<group>"; };
 		B0708D0127E77BB600911389 /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		B0708D0327E77CD300911389 /* OnboardingContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerVC.swift; sourceTree = "<group>"; };
 		B086CF3127E86E8C00E778FB /* LocalState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalState.swift; sourceTree = "<group>"; };
@@ -63,6 +67,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B0212EF427EC87F8000766E0 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		B0429A2127E4A0C90065E5E0 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +98,7 @@
 				B04BCF5527EB60C500D4D1FF /* CFL Viewer.entitlements */,
 				B086CF3627E8BF3800E778FB /* Extansions */,
 				B086CF3027E86E7A00E778FB /* Utilities */,
+				B0212EF427EC87F8000766E0 /* Managers */,
 				B08B924327E4D22700DA6C74 /* Modules */,
 				B08B924227E4B9A100DA6C74 /* Support */,
 				B0429A3B27E4A0CA0065E5E0 /* Info.plist */,
@@ -99,6 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				B086CF3127E86E8C00E778FB /* LocalState.swift */,
+				B0513FD327EC9AD90084B913 /* NonceCrypto.swift */,
+				B0513FD527ECCB3F0084B913 /* NSNotificationName.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -289,7 +303,9 @@
 				B0708D0227E77BB600911389 /* OnboardingVC.swift in Sources */,
 				B08B924727E728D400DA6C74 /* LoginVC.swift in Sources */,
 				B086CF3427E8BEE700E778FB /* LoginView.swift in Sources */,
+				B0513FD427EC9AD90084B913 /* NonceCrypto.swift in Sources */,
 				B0429A3027E4A0C90065E5E0 /* SceneDelegate.swift in Sources */,
+				B0513FD627ECCB3F0084B913 /* NSNotificationName.swift in Sources */,
 				B086CF3827E8BF7000E778FB /* UITextField+SecureToggle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,6 +449,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CFL Viewer/CFL Viewer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "CFL Viewer/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -461,6 +478,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CFL Viewer/CFL Viewer.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B5KHBWJMRU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "CFL Viewer/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

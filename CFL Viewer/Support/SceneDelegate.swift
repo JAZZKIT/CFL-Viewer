@@ -24,11 +24,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = .systemBackground
         window?.makeKeyAndVisible()
 
-//        loginVC.delegate = self
+        loginVC.delegate = self
         onboardingContainerVC.delegateOnboarding = self
         
-//        registerForNotification()
-//
+        registerForNotification()
+
         displayNextScreen()
     }
     
@@ -39,16 +39,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func displayNextScreen() {
         if LocalState.hasOnboarded {
             prepHomeView()
-            setRootVC(loginVC)
+            if LocalState.isLogin {
+                setRootVC(homeVC)
+            } else {
+                setRootVC(loginVC)
+            }
         } else {
             setRootVC(onboardingContainerVC)
         }
     }
-//
-//    private func registerForNotification() {
-//        NotificationCenter.default.addObserver(self, selector: #selector(didLogout), name: .Logout, object: nil)
-//    }
-//
+
+    private func registerForNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(didLogout), name: .Logout, object: nil)
+    }
+
     private func prepHomeView() {
         //mainVC.setStatusBar()
         UINavigationBar.appearance().isTranslucent = false
@@ -57,13 +61,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
-//// MARK: - LoginVCDelegate
-//extension SceneDelegate: LoginVCDelegate {
-//    func didLogin() {
-//        displayNextScreen()
-//    }
-//}
-//
+// MARK: - LoginVCDelegate
+extension SceneDelegate: LoginVCDelegate {
+    func didLogin() {
+        displayNextScreen()
+    }
+}
+
 // MARK: - OnboardingContainerVCDelegate
 extension SceneDelegate: OnboardingContainerVCDelegate {
     func didFinishOnboarding() {
@@ -73,12 +77,12 @@ extension SceneDelegate: OnboardingContainerVCDelegate {
     }
 }
 
-//// MARK: - LogoutDelegate
-//extension SceneDelegate: LogoutDelegate {
-//    @objc func didLogout() {
-//        setRootVC(loginVC)
-//    }
-//}
+// MARK: - LogoutDelegate
+extension SceneDelegate {
+    @objc func didLogout() {
+        setRootVC(loginVC)
+    }
+}
 
 extension SceneDelegate {
     func setRootVC(_ vc: UIViewController, animated: Bool = true) {
