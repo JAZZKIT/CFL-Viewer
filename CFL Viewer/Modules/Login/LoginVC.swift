@@ -33,12 +33,12 @@ class LoginVC: UIViewController {
     
     weak var delegate: LoginVCDelegate?
     
-    var username: String? {
+    var email: String? {
         get {
-            return loginView.usernameTextField.text
+            return loginView.emailTextField.text
         }
         set {
-            loginView.usernameTextField.text = newValue
+            loginView.emailTextField.text = newValue
         }
     }
     var password: String? {
@@ -76,7 +76,7 @@ class LoginVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        username = ""
+        email = ""
         password = ""
     }
 }
@@ -210,8 +210,6 @@ extension LoginVC {
             
             let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authentication.accessToken)
             
-            // ...
-            
             Auth.auth().signIn(with: credential) { authResult, error in
                 if let error = error {
                     print(error)
@@ -221,7 +219,6 @@ extension LoginVC {
                 
                 print(user.displayName ?? "Success")
                 self.delegate?.didLogin()
-                
             }
         }
     }
@@ -255,21 +252,20 @@ extension LoginVC {
     }
     
     private func login() {
-        guard let username = username, let password = password else {
+        guard let email = email, let password = password else {
             assertionFailure("Username/Password should never be nil")
             return
         }
         
-        //        if username.isEmpty || password.isEmpty {
-        //            configureView(withMessage: "Username/Password cannot be blank")
-        //            return
-        //        }
-        
-        if username == "" && password == "" {
-            signInButton.configuration?.showsActivityIndicator = true
-            delegate?.didLogin()
-        } else {
-            configureView(withMessage: "Incorrect username/password")
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] result, error in
+            guard let self = self else { return }
+            
+            guard error == nil else {
+                self.configureView(withMessage: "Incorrect username/password")
+                return
+            }
+            
+            self.delegate?.didLogin()
         }
     }
     

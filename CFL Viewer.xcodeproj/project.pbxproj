@@ -96,11 +96,11 @@
 			isa = PBXGroup;
 			children = (
 				B04BCF5527EB60C500D4D1FF /* CFL Viewer.entitlements */,
+				B08B924227E4B9A100DA6C74 /* Support */,
 				B086CF3627E8BF3800E778FB /* Extansions */,
 				B086CF3027E86E7A00E778FB /* Utilities */,
 				B0212EF427EC87F8000766E0 /* Managers */,
 				B08B924327E4D22700DA6C74 /* Modules */,
-				B08B924227E4B9A100DA6C74 /* Support */,
 				B0429A3B27E4A0CA0065E5E0 /* Info.plist */,
 				B086CF3C27E8FDDB00E778FB /* GoogleService-Info.plist */,
 			);

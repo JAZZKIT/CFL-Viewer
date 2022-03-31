@@ -10,7 +10,7 @@ import UIKit
 class LoginView: UIView {
 
     let stackView = UIStackView()
-    let usernameTextField = UITextField()
+    let emailTextField = UITextField()
     let dividerView = UIView()
     let passwordTextField = UITextField()
 
@@ -35,9 +35,9 @@ extension LoginView {
         stackView.axis = .vertical
         stackView.spacing = 8
 
-        usernameTextField.translatesAutoresizingMaskIntoConstraints = false
-        usernameTextField.placeholder = "Username"
-        usernameTextField.delegate = self
+        emailTextField.translatesAutoresizingMaskIntoConstraints = false
+        emailTextField.placeholder = "Email"
+        emailTextField.delegate = self
 
         dividerView.translatesAutoresizingMaskIntoConstraints = false
         dividerView.backgroundColor = .secondarySystemFill
@@ -53,7 +53,7 @@ extension LoginView {
     }
 
     func layout() {
-        stackView.addArrangedSubview(usernameTextField)
+        stackView.addArrangedSubview(emailTextField)
         stackView.addArrangedSubview(dividerView)
         stackView.addArrangedSubview(passwordTextField)
         addSubview(stackView)
@@ -73,7 +73,7 @@ extension LoginView {
 extension LoginView: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        usernameTextField.endEditing(true)
+        emailTextField.endEditing(true)
         passwordTextField.endEditing(true)
         return true
     }
