@@ -8,38 +8,36 @@
 import UIKit
 import Firebase
 
-class HomeVC: UIViewController {
+class HomeVC: UITabBarController {
     
-    let logButton = UIButton(type: .system)
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTabBar()
+        viewControllers  = [createMatchNC(), createPlayesNC()]
+    }
+    
+    func createMatchNC() -> UINavigationController {
+        let matchListVC = MatchListVC()
+        matchListVC.title = "Matchs"
+        matchListVC.setTabBarImage(imageName: "calendar", title: "Matchs")
         
-        configureViewController()
-        logOutTest()
-        layout()
+        let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutTapped))
+        matchListVC.navigationItem.rightBarButtonItem = logoutButton
+       
+        return UINavigationController(rootViewController: matchListVC)
     }
     
-    func logOutTest() {
-        view.addSubview(logButton)
-        logButton.translatesAutoresizingMaskIntoConstraints = false
-        logButton.configuration = .filled()
-        logButton.configuration?.imagePadding = 8
-        logButton.setTitle("logOut", for: .normal)
-        logButton.addTarget(self, action: #selector(logoutTapped), for: .touchUpInside)
+    func createPlayesNC() -> UINavigationController {
+        let playerVC = PlayerVC()
+        playerVC.title = "Players"
+        playerVC.setTabBarImage(imageName: "person.3", title: "Players")
+        
+        return UINavigationController(rootViewController: playerVC)
     }
     
-    func layout() {
-        NSLayoutConstraint.activate([
-            logButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-    }
-    
-    func configureViewController() {
-        view.backgroundColor = .orange
-        navigationController?.navigationBar.prefersLargeTitles = true
-//        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(logoutTapped))
-//        navigationItem.rightBarButtonItem = addButton
+    private func setupTabBar() {
+        tabBar.tintColor = .systemRed
+        tabBar.isTranslucent = false
     }
     
 }
@@ -47,13 +45,25 @@ class HomeVC: UIViewController {
 // MARK: - Actions
 extension HomeVC {
     @objc func logoutTapped(sender: UIButton) {
-        
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-            NotificationCenter.default.post(name: .Logout, object: nil)
-        } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
+        NetworkManager.shared.getMatches(in: 2015) { [weak self] result in
+            guard let self = self else { return }
+            //self.dismissLoadingView()
+            
+            switch result {
+            case .success(let data):
+                print(data.data.count)
+            case .failure(let error):
+                print(error)
+                //self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+            }
         }
+//
+//        let firebaseAuth = Auth.auth()
+//        do {
+//            try firebaseAuth.signOut()
+//            NotificationCenter.default.post(name: .Logout, object: nil)
+//        } catch let signOutError as NSError {
+//            print("Error signing out: %@", signOutError)
+//        }
     }
 }
