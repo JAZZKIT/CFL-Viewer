@@ -59,7 +59,7 @@ extension HomeVC {
         }
 //
 //        let firebaseAuth = Auth.auth()
-//        do {
+//        do
 //            try firebaseAuth.signOut()
 //            NotificationCenter.default.post(name: .Logout, object: nil)
 //        } catch let signOutError as NSError {

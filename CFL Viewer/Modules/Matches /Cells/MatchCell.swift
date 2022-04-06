@@ -34,10 +34,14 @@ class MatchCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    func set(favorite: Follower) {
-//        usernameLabel.text = favorite.login
-//        avatarImageView.downloadImage(fromURL: favorite.avatarUrl)
-//    }
+    func set(match: MatchList) {
+        dateLabel.text = match.dateStart
+        scoreLabel.text = "\(match.team1?.score ?? 0) - \(match.team2?.score ?? 0)"
+        typeGameLabel.text = match.eventType?.name
+        venueLabel.text = match.venue?.name
+        team1Image.setTeam(team1Image, with: match.team1?.nickname)
+        team1Image.setTeam(team2Image, with: match.team2?.nickname)
+    }
     
     private func configure() {
         contentViewCell.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +53,6 @@ class MatchCell: UITableViewCell {
         dateLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
         dateLabel.adjustsFontForContentSizeCategory = true
         dateLabel.textColor = .white
-        dateLabel.text = "test 1"
         
         scoreStackView.translatesAutoresizingMaskIntoConstraints = false
         scoreStackView.axis = .vertical
@@ -62,13 +65,11 @@ class MatchCell: UITableViewCell {
         scoreLabel.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         scoreLabel.adjustsFontForContentSizeCategory = true
         scoreLabel.textColor = .white
-        scoreLabel.text = "11 - 21"
         
         typeGameLabel.translatesAutoresizingMaskIntoConstraints = false
         typeGameLabel.font = UIFont.systemFont(ofSize: 12, weight: .bold)
         typeGameLabel.adjustsFontForContentSizeCategory = true
         typeGameLabel.textColor = .white
-        typeGameLabel.text = "putin dead"
         
         matchStackView.translatesAutoresizingMaskIntoConstraints = false
         matchStackView.axis = .horizontal
@@ -76,8 +77,10 @@ class MatchCell: UITableViewCell {
         
         team1Image.translatesAutoresizingMaskIntoConstraints = false
         team1Image.image = UIImage(named: "Elks")
+        team1Image.contentMode = .scaleAspectFit
         team2Image.translatesAutoresizingMaskIntoConstraints = false
         team2Image.image = UIImage(named: "Blue Bombers")
+        team2Image.contentMode = .scaleAspectFit
         
         dividerBottom.translatesAutoresizingMaskIntoConstraints = false
         dividerBottom.backgroundColor = .white
@@ -86,7 +89,6 @@ class MatchCell: UITableViewCell {
         venueLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         venueLabel.adjustsFontForContentSizeCategory = true
         venueLabel.textColor = .white
-        venueLabel.text = "Ukraine"
     }
     
     private func layout() {
@@ -133,11 +135,4 @@ class MatchCell: UITableViewCell {
             venueLabel.bottomAnchor.constraint(equalTo: contentViewCell.bottomAnchor, constant: -padding)
         ])
     }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
-
 }

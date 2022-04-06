@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B02F485B27FDD49200F23AD5 /* CFAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02F485A27FDD49200F23AD5 /* CFAlertVC.swift */; };
+		B02F485D27FDD61B00F23AD5 /* CFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02F485C27FDD61B00F23AD5 /* CFButton.swift */; };
+		B02F485F27FDD87200F23AD5 /* CFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02F485E27FDD87200F23AD5 /* CFError.swift */; };
+		B02F486127FDEBC100F23AD5 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02F486027FDEBC100F23AD5 /* UIImageView.swift */; };
 		B0429A2E27E4A0C90065E5E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0429A2D27E4A0C90065E5E0 /* AppDelegate.swift */; };
 		B0429A3027E4A0C90065E5E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0429A2F27E4A0C90065E5E0 /* SceneDelegate.swift */; };
 		B0429A3727E4A0CA0065E5E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0429A3627E4A0CA0065E5E0 /* Assets.xcassets */; };
@@ -35,6 +39,10 @@
 		65E4DE75FE5F6F0407D58F59 /* Pods-CFL Viewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CFL Viewer.release.xcconfig"; path = "Target Support Files/Pods-CFL Viewer/Pods-CFL Viewer.release.xcconfig"; sourceTree = "<group>"; };
 		8C29A57909D7F1561582B761 /* Pods-CFL Viewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CFL Viewer.debug.xcconfig"; path = "Target Support Files/Pods-CFL Viewer/Pods-CFL Viewer.debug.xcconfig"; sourceTree = "<group>"; };
 		93C3289F1A15354DDE34C0C2 /* Pods_CFL_Viewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CFL_Viewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B02F485A27FDD49200F23AD5 /* CFAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFAlertVC.swift; sourceTree = "<group>"; };
+		B02F485C27FDD61B00F23AD5 /* CFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFButton.swift; sourceTree = "<group>"; };
+		B02F485E27FDD87200F23AD5 /* CFError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFError.swift; sourceTree = "<group>"; };
+		B02F486027FDEBC100F23AD5 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		B0429A2A27E4A0C90065E5E0 /* CFL Viewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CFL Viewer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0429A2D27E4A0C90065E5E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0429A2F27E4A0C90065E5E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +97,16 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		B02F485927FDD44A00F23AD5 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				B02F485A27FDD49200F23AD5 /* CFAlertVC.swift */,
+				B02F485C27FDD61B00F23AD5 /* CFButton.swift */,
+				B02F485E27FDD87200F23AD5 /* CFError.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
 		B0429A2127E4A0C90065E5E0 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +134,7 @@
 				B086CF3027E86E7A00E778FB /* Utilities */,
 				B0212EF427EC87F8000766E0 /* Managers */,
 				B08B924327E4D22700DA6C74 /* Modules */,
+				B02F485927FDD44A00F23AD5 /* Helper */,
 				B0429A3B27E4A0CA0065E5E0 /* Info.plist */,
 				B086CF3C27E8FDDB00E778FB /* GoogleService-Info.plist */,
 			);
@@ -146,6 +165,7 @@
 				B086CF3727E8BF7000E778FB /* UITextField+SecureToggle.swift */,
 				B0F2C4D127F70BF300E39E0C /* UIViewController+.swift */,
 				B0AF2D7727FB7B6A004AA990 /* UIView+.swift */,
+				B02F486027FDEBC100F23AD5 /* UIImageView.swift */,
 			);
 			path = Extansions;
 			sourceTree = "<group>";
@@ -351,12 +371,16 @@
 			files = (
 				B04F799827F8843700223172 /* MatchCell.swift in Sources */,
 				B07CEF8527FC8C5C00B06E0F /* NetwokManager.swift in Sources */,
+				B02F485D27FDD61B00F23AD5 /* CFButton.swift in Sources */,
 				B0F2C4D227F70BF300E39E0C /* UIViewController+.swift in Sources */,
 				B0B19B1727FC832C00939B94 /* Match.swift in Sources */,
+				B02F485F27FDD87200F23AD5 /* CFError.swift in Sources */,
+				B02F486127FDEBC100F23AD5 /* UIImageView.swift in Sources */,
 				B08B924A27E7291900DA6C74 /* HomeVC.swift in Sources */,
 				B086CF3227E86E8C00E778FB /* LocalState.swift in Sources */,
 				B0F2C4CD27F7093D00E39E0C /* MatchListVC.swift in Sources */,
 				B0708D0427E77CD300911389 /* OnboardingContainerVC.swift in Sources */,
+				B02F485B27FDD49200F23AD5 /* CFAlertVC.swift in Sources */,
 				B0429A2E27E4A0C90065E5E0 /* AppDelegate.swift in Sources */,
 				B0F2C4D027F7099200E39E0C /* PlayerVC.swift in Sources */,
 				B0708D0227E77BB600911389 /* OnboardingVC.swift in Sources */,

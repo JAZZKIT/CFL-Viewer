@@ -11,9 +11,12 @@ class MatchListVC: UIViewController {
 
     let tableView = UITableView()
     
+    var matchList: [MatchList] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
+        getMatch()
     }
     
     func configureTableView() {
@@ -26,13 +29,43 @@ class MatchListVC: UIViewController {
         
        tableView.register(MatchCell.self, forCellReuseIdentifier: MatchCell.reuseID)
     }
+    
+    func getMatch() {
+        NetworkManager.shared.getMatches(in: 2015) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let match):
+                //DispatchQueue.main.async { self.configureUIElements(with: match) }
+                self.matchList = match.data
+                DispatchQueue.main.async { self.tableView.reloadData() }
+            case .failure(let error):
+                self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+            }
+        }
+    
+//        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
+//            guard let self = self else { return }
+//
+//            switch result {
+//            case .success(let user):
+//
+//            case .failure(let error):
+//                self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+//            }
+//        }
+    }
+    
+    private func configureUIElements(with match: Match) {
+        
+    }
 
 }
 
 // MARK: - UITableViewDataSource
 extension MatchListVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return matchList.count
     }
 }
 
@@ -40,7 +73,8 @@ extension MatchListVC: UITableViewDataSource {
 extension MatchListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MatchCell.reuseID, for: indexPath) as! MatchCell
-        
+        //print(matchList[0].)
+        cell.set(match: matchList[indexPath.row])
         return cell
     }
 }
