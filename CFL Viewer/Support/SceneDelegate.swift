@@ -27,6 +27,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         loginVC.delegate = self
         onboardingContainerVC.delegateOnboarding = self
         
+        configureNavigationBar()
+        
         registerForNotification()
 
         displayNextScreen()
@@ -54,9 +56,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func prepHomeView() {
-        //mainVC.setStatusBar()
+        homeVC.setStatusBar()
         UINavigationBar.appearance().isTranslucent = false
-        //UINavigationBar.appearance().backgroundColor = appColor
+    }
+    
+    func configureNavigationBar() {
+        UINavigationBar.appearance().tintColor = .white
+
+        //UITabBar.appearance().barTintColor = .white
     }
 
 }

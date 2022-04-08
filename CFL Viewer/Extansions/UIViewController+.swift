@@ -23,4 +23,13 @@ extension UIViewController {
         let image = UIImage(systemName: imageName, withConfiguration: configuration)
         tabBarItem = UITabBarItem(title: title, image: image, tag: 0)
     }
+    
+    func setStatusBar() {
+        let statusBarSize = UIApplication.shared.statusBarFrame.size
+        let frame = CGRect(origin: .zero, size: statusBarSize)
+        let statusbarView = UIView(frame: frame)
+
+        statusbarView.backgroundColor = .systemRed
+        view.addSubview(statusbarView)
+    }
 }

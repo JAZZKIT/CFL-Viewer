@@ -25,9 +25,7 @@ class NetworkManager {
                     return
                 }
                 
-                print(matches.data[0].team1?.nickname)
                 completed(.success(matches))
-                //print(matches.data.count)
             }
     }
 }

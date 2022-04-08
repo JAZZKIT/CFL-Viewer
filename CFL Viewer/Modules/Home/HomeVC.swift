@@ -13,7 +13,7 @@ class HomeVC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTabBar()
-        viewControllers  = [createMatchNC(), createPlayesNC()]
+        viewControllers  = [createMatchNC(), createPlayesNC(), createTeamNC()]
     }
     
     func createMatchNC() -> UINavigationController {
@@ -30,9 +30,17 @@ class HomeVC: UITabBarController {
     func createPlayesNC() -> UINavigationController {
         let playerVC = PlayerVC()
         playerVC.title = "Players"
-        playerVC.setTabBarImage(imageName: "person.3", title: "Players")
+        playerVC.setTabBarImage(imageName: "person", title: "Players")
         
         return UINavigationController(rootViewController: playerVC)
+    }
+    
+    func createTeamNC() -> UINavigationController {
+        let teamVC = TeamVC()
+        teamVC.title = "Teams"
+        teamVC.setTabBarImage(imageName: "person.3", title: "Teams")
+        
+        return UINavigationController(rootViewController: teamVC)
     }
     
     private func setupTabBar() {

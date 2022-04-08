@@ -36,24 +36,12 @@ class MatchListVC: UIViewController {
             
             switch result {
             case .success(let match):
-                //DispatchQueue.main.async { self.configureUIElements(with: match) }
                 self.matchList = match.data
                 DispatchQueue.main.async { self.tableView.reloadData() }
             case .failure(let error):
                 self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
             }
         }
-    
-//        NetworkManager.shared.getUserInfo(for: username) { [weak self] result in
-//            guard let self = self else { return }
-//
-//            switch result {
-//            case .success(let user):
-//
-//            case .failure(let error):
-//                self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
-//            }
-//        }
     }
     
     private func configureUIElements(with match: Match) {

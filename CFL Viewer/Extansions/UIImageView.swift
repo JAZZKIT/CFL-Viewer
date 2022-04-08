@@ -8,6 +8,7 @@
 import UIKit
 
 extension UIImageView {
+    
     func setTeam(_ team: UIImageView?, with image: String?) {
         team?.image = UIImage(named: image!)
     }

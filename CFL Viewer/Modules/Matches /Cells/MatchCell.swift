@@ -35,7 +35,7 @@ class MatchCell: UITableViewCell {
     }
     
     func set(match: MatchList) {
-        dateLabel.text = match.dateStart
+        dateLabel.text = match.dateStart?.convertToDisplayFormat()
         scoreLabel.text = "\(match.team1?.score ?? 0) - \(match.team2?.score ?? 0)"
         typeGameLabel.text = match.eventType?.name
         venueLabel.text = match.venue?.name
