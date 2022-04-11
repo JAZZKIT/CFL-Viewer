@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct Match : Codable {
-    let data : [MatchList]
+struct Match: Codable {
+    let data: [MatchList]
 }
 
-struct MatchList : Codable {
-    let dateStart : String?
-    let season : Int?
-    let eventType : EventInfo?
-    let eventStatus : EventInfo?
-    let venue : EventInfo?
-    let team1 : Team?
-    let team2 : Team?
+struct MatchList: Codable {
+    let dateStart: String?
+    let season: Int?
+    let eventType: EventInfo?
+    let eventStatus: EventInfo?
+    let venue: EventInfo?
+    let team1: Team?
+    let team2: Team?
 
     enum CodingKeys: String, CodingKey {
         case dateStart = "date_start"
@@ -31,11 +31,11 @@ struct MatchList : Codable {
     }
 }
 
-struct Team : Codable {
-    let nickname : String?
-    let score : Int?
+struct Team: Codable {
+    let nickname: String?
+    let score: Int?
 }
 
-struct EventInfo : Codable {
-    let name : String?
+struct EventInfo: Codable {
+    let name: String?
 }

@@ -47,31 +47,29 @@ class HomeVC: UITabBarController {
         tabBar.tintColor = .systemRed
         tabBar.isTranslucent = false
     }
-    
 }
 
 // MARK: - Actions
 extension HomeVC {
     @objc func logoutTapped(sender: UIButton) {
-        NetworkManager.shared.getMatches(in: 2015) { [weak self] result in
-            guard let self = self else { return }
-            //self.dismissLoadingView()
-            
-            switch result {
-            case .success(let data):
-                print(data.data.count)
-            case .failure(let error):
-                print(error)
-                //self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
-            }
-        }
+//        NetworkManager.shared.getMatches(in: "2015") { [weak self] result in
+//            guard let self = self else { return }
+//            //self.dismissLoadingView()
 //
-//        let firebaseAuth = Auth.auth()
-//        do
-//            try firebaseAuth.signOut()
-//            NotificationCenter.default.post(name: .Logout, object: nil)
-//        } catch let signOutError as NSError {
-//            print("Error signing out: %@", signOutError)
+//            switch result {
+//            case .success(let data):
+//                print(data.data.count)
+//            case .failure(let error):
+//                print(error)
+//                //self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+//            }
 //        }
+        let firebaseAuth = Auth.auth()
+        do {
+            try firebaseAuth.signOut()
+            NotificationCenter.default.post(name: .Logout, object: nil)
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
     }
 }

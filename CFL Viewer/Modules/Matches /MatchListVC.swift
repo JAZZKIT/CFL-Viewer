@@ -11,17 +11,28 @@ class MatchListVC: UIViewController {
 
     let tableView = UITableView()
     
+    var collectionVC: ChipsCollectionVC?
+    
+    let but = UIButton(type: .system)
+    
     var matchList: [MatchList] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureCollectionView()
+        layout()
         configureTableView()
-        getMatch()
+        getMatch(in: "2015")
     }
     
-    func configureTableView() {
-        view.addSubview(tableView)
-        tableView.frame = view.bounds
+    private func configureCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        collectionVC = ChipsCollectionVC(collectionViewLayout: layout)
+        collectionVC?.chipDelegate = self
+    }
+    
+    private func configureTableView() {
         tableView.rowHeight = 200
         tableView.delegate = self
         tableView.dataSource = self
@@ -30,10 +41,10 @@ class MatchListVC: UIViewController {
        tableView.register(MatchCell.self, forCellReuseIdentifier: MatchCell.reuseID)
     }
     
-    func getMatch() {
-        NetworkManager.shared.getMatches(in: 2015) { [weak self] result in
+    private func getMatch(in year: String) {
+        NetworkManager.shared.getMatches(in: year) { [weak self] result in
             guard let self = self else { return }
-            
+
             switch result {
             case .success(let match):
                 self.matchList = match.data
@@ -43,11 +54,30 @@ class MatchListVC: UIViewController {
             }
         }
     }
-    
-    private func configureUIElements(with match: Match) {
-        
-    }
+}
 
+extension MatchListVC {
+    func layout() {
+        guard let collectionView = collectionVC?.collectionView else { return }
+        
+        view.addSubview(tableView)
+        view.addSubview(collectionView)
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
+            collectionView.heightAnchor.constraint(equalToConstant: 60),
+            
+            tableView.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 0),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -61,8 +91,15 @@ extension MatchListVC: UITableViewDataSource {
 extension MatchListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MatchCell.reuseID, for: indexPath) as! MatchCell
-        //print(matchList[0].)
         cell.set(match: matchList[indexPath.row])
         return cell
+    }
+}
+
+// MARK: - ChipsCollectionVCDelegate
+extension MatchListVC: ChipsCollectionVCDelegate {
+    func slectedYear(year: String?) {
+        guard let year = year else { return }
+        getMatch(in: year)
     }
 }

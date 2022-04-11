@@ -76,10 +76,8 @@ class MatchCell: UITableViewCell {
         matchStackView.spacing = 20
         
         team1Image.translatesAutoresizingMaskIntoConstraints = false
-        team1Image.image = UIImage(named: "Elks")
         team1Image.contentMode = .scaleAspectFit
         team2Image.translatesAutoresizingMaskIntoConstraints = false
-        team2Image.image = UIImage(named: "Blue Bombers")
         team2Image.contentMode = .scaleAspectFit
         
         dividerBottom.translatesAutoresizingMaskIntoConstraints = false
