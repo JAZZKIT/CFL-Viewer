@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TeamVC: UIViewController, UICollectionViewDelegate {
+class TeamVC: UIViewController {
     
     var collectionView: UICollectionView?
     
@@ -29,6 +29,7 @@ class TeamVC: UIViewController, UICollectionViewDelegate {
         guard let collectionView = collectionView else { return }
         
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.frame = view.bounds
         collectionView.register(TeamCell.self, forCellWithReuseIdentifier: TeamCell.reuseID)
         view.addSubviews(collectionView)
@@ -63,3 +64,40 @@ extension TeamVC: UICollectionViewDataSource {
     }
 }
 
+extension TeamVC: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let teamInfoVC = TeamInfoVC()
+        let navController = UINavigationController(rootViewController: teamInfoVC)
+        
+        if let cell = collectionView.cellForItem(at: indexPath) as? TeamCell {
+            
+            teamInfoVC.teamTitleLabel.text = cell.teamLabel.text
+            teamInfoVC.teamImageView.image = cell.teamImage.image
+            navController.title = "SJLIFJIFJWJF;JAOFjg"
+            navController.navigationBar.tintColor = .green
+            //cell.teamLabel = teamInfoVC.teamTitleLabel
+        }
+        
+        
+        
+        if let sheet = navController.sheetPresentationController {
+            sheet.detents = [.medium(), .large()]
+            sheet.largestUndimmedDetentIdentifier = nil
+            sheet.prefersGrabberVisible = true
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = true
+//            sheet.prefersEdgeAttachedInCompactHeight = true
+//            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true
+        }
+        
+        present(navController, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Actions
+extension TeamVC {
+    private func prepareTeamInfoSheet() {
+
+    }
+}

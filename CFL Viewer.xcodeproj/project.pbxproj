@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B01942422805BED700C42638 /* TeamInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01942412805BED700C42638 /* TeamInfoVC.swift */; };
 		B02F485B27FDD49200F23AD5 /* CFAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02F485A27FDD49200F23AD5 /* CFAlertVC.swift */; };
 		B02F485D27FDD61B00F23AD5 /* CFButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02F485C27FDD61B00F23AD5 /* CFButton.swift */; };
 		B02F485F27FDD87200F23AD5 /* CFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = B02F485E27FDD87200F23AD5 /* CFError.swift */; };
@@ -47,6 +48,7 @@
 		65E4DE75FE5F6F0407D58F59 /* Pods-CFL Viewer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CFL Viewer.release.xcconfig"; path = "Target Support Files/Pods-CFL Viewer/Pods-CFL Viewer.release.xcconfig"; sourceTree = "<group>"; };
 		8C29A57909D7F1561582B761 /* Pods-CFL Viewer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CFL Viewer.debug.xcconfig"; path = "Target Support Files/Pods-CFL Viewer/Pods-CFL Viewer.debug.xcconfig"; sourceTree = "<group>"; };
 		93C3289F1A15354DDE34C0C2 /* Pods_CFL_Viewer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CFL_Viewer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B01942412805BED700C42638 /* TeamInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamInfoVC.swift; sourceTree = "<group>"; };
 		B02F485A27FDD49200F23AD5 /* CFAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFAlertVC.swift; sourceTree = "<group>"; };
 		B02F485C27FDD61B00F23AD5 /* CFButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFButton.swift; sourceTree = "<group>"; };
 		B02F485E27FDD87200F23AD5 /* CFError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFError.swift; sourceTree = "<group>"; };
@@ -103,6 +105,14 @@
 				93C3289F1A15354DDE34C0C2 /* Pods_CFL_Viewer.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B01942402805BE9500C42638 /* ViewContoller */ = {
+			isa = PBXGroup;
+			children = (
+				B01942412805BED700C42638 /* TeamInfoVC.swift */,
+			);
+			path = ViewContoller;
 			sourceTree = "<group>";
 		};
 		B0212EF427EC87F8000766E0 /* Managers */ = {
@@ -168,6 +178,7 @@
 		B05EFCD928007CA800A563CE /* Team */ = {
 			isa = PBXGroup;
 			children = (
+				B01942402805BE9500C42638 /* ViewContoller */,
 				B0DCC6212801F8000076AAE5 /* Models */,
 				B05EFCDC2800B11000A563CE /* Cells */,
 				B05EFCDA28007D2600A563CE /* TeamVC.swift */,
@@ -437,6 +448,7 @@
 				B07CEF8527FC8C5C00B06E0F /* NetwokManager.swift in Sources */,
 				B02F485D27FDD61B00F23AD5 /* CFButton.swift in Sources */,
 				B0F668BC2802ECD70063A0CC /* ChipCell.swift in Sources */,
+				B01942422805BED700C42638 /* TeamInfoVC.swift in Sources */,
 				B0F2C4D227F70BF300E39E0C /* UIViewController+.swift in Sources */,
 				B05EFCDB28007D2600A563CE /* TeamVC.swift in Sources */,
 				B0DCC6202801ECA50076AAE5 /* UIHelper.swift in Sources */,
