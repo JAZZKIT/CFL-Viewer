@@ -62,6 +62,7 @@ class LoginVC: UIViewController {
         super.viewDidLoad()
         style()
         layout()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -84,22 +85,28 @@ class LoginVC: UIViewController {
 extension LoginVC {
     
     private func style() {
-        view.backgroundColor = .systemBackground
+        
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "backgroud")
+        backgroundImage.contentMode = .scaleAspectFill
+        self.view.insertSubview(backgroundImage, at: 0)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
+        titleLabel.font = UIFont(name: "Noteworthy-Bold", size: 34)
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.text = "CFL Viewer"
         titleLabel.alpha = 0
+        titleLabel.textColor = .white
         
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         subtitleLabel.textAlignment = .center
-        subtitleLabel.font = UIFont.preferredFont(forTextStyle: .title3)
+        subtitleLabel.font = UIFont(name: "Noteworthy-Light", size: 24)
         subtitleLabel.adjustsFontForContentSizeCategory = true
         subtitleLabel.text = "puTIN вмер!"
         subtitleLabel.numberOfLines = 0
         subtitleLabel.alpha = 0
+        subtitleLabel.textColor = .white
         
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         signInButton.configuration = .filled()
@@ -142,16 +149,18 @@ extension LoginVC {
         subtitleLeadingAnchor?.isActive = true
         
         NSLayoutConstraint.activate([
-            subtitleLabel.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 3),
-            titleLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor),
-            subtitleLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+            titleLabel.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 8),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: titleLabel.trailingAnchor, multiplier: 1),
+            titleLabel.heightAnchor.constraint(equalToConstant: 34),
+            subtitleLabel.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 2),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: subtitleLabel.trailingAnchor, multiplier: 1),
+            subtitleLabel.heightAnchor.constraint(equalToConstant: 34),
         ])
         
         NSLayoutConstraint.activate([
-            loginView.topAnchor.constraint(equalToSystemSpacingBelow: subtitleLabel.bottomAnchor, multiplier: 3),
             loginView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             loginView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 1),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: loginView.trailingAnchor, multiplier: 1)
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: loginView.trailingAnchor, multiplier: 1),
         ])
         
         NSLayoutConstraint.activate([

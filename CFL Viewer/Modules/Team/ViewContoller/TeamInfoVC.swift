@@ -12,12 +12,28 @@ class TeamInfoVC: UIViewController {
     var teamImageView = UIImageView()
     var teamTitleLabel = UILabel()
     var teamBioLabel = UILabel()
+    
+    // animation
+    var topEdgeOnScreen: CGFloat = 20
+    var topEdgeOffScreen: CGFloat = 1000
+    
+    var topTeamBioAnchor: NSLayoutConstraint?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureController()
         style()
         layout()
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if let sheet = self.sheetPresentationController {
+            if sheet.selectedDetentIdentifier == .large {
+                animate()
+            }
+        }
     }
     
     private func configureController() {
@@ -48,6 +64,9 @@ extension TeamInfoVC {
     private func layout() {
         view.addSubviews(teamImageView, teamTitleLabel, teamBioLabel)
         
+        topTeamBioAnchor = teamBioLabel.topAnchor.constraint(equalTo: teamTitleLabel.bottomAnchor, constant: topEdgeOffScreen)
+        topTeamBioAnchor?.isActive = true
+        
         NSLayoutConstraint.activate([
             teamImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             teamImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -55,7 +74,7 @@ extension TeamInfoVC {
             teamTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             teamTitleLabel.topAnchor.constraint(equalTo: teamImageView.bottomAnchor, constant: 0),
             
-            teamBioLabel.topAnchor.constraint(equalTo: teamTitleLabel.bottomAnchor, constant: 20),
+            //teamBioLabel.topAnchor.constraint(equalTo: teamTitleLabel.bottomAnchor, constant: 20),
             teamBioLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             teamBioLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),            
         ])
@@ -67,6 +86,20 @@ extension TeamInfoVC {
 extension TeamInfoVC {
     @objc func dismissVC() {
         dismiss(animated: true)
+    }
+}
+
+// MARK: - Animation
+extension TeamInfoVC {
+    private func animate() {
+        let duration = 0.5
+        
+        let animator1 = UIViewPropertyAnimator(duration: duration, curve: .easeInOut) {
+            self.topTeamBioAnchor?.constant = self.topEdgeOnScreen
+            self.view.layoutIfNeeded()
+        }
+        animator1.startAnimation()
+        
     }
 }
 
