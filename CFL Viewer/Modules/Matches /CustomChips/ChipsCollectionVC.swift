@@ -13,7 +13,7 @@ protocol ChipsCollectionVCDelegate: AnyObject {
 
 class ChipsCollectionVC: UICollectionViewController {
     
-    let years = ["2015", "2016", "2017", "2018"]
+    let years = ["2015", "2016", "2017", "2018", "2019", "2020", "2021"]
     
     weak var chipDelegate: ChipsCollectionVCDelegate?
 

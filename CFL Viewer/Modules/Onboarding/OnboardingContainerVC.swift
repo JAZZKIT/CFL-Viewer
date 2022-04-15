@@ -27,6 +27,7 @@ class OnboardingContainerVC: UIPageViewController {
     var pageControlBottomAnchor: NSLayoutConstraint?
     var skipButtonTopAnchor: NSLayoutConstraint?
     var nextButtonTopAnchor: NSLayoutConstraint?
+    var doneButtonTrailingAnchor: NSLayoutConstraint?
     
     override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil) {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: options)
@@ -53,18 +54,16 @@ extension OnboardingContainerVC {
         delegate = self
         
         pageControl.addTarget(self, action: #selector(pageControlTapped(_:)), for: .valueChanged)
-
-        #warning("REFACTORING: change string")
         
         let page1 = OnboardingVC(imageName: "match",
-                                             titleText: "Welcome",
-                                             subtitleText: "To the Swift Arcade. Your place for learning Swift.")
+                                             titleText: "Matches",
+                                             subtitleText: "See statistic about recent matches ")
         let page2 = OnboardingVC(imageName: "players",
-                                             titleText: "Learn",
-                                             subtitleText: "Start your career in iOS development.")
+                                             titleText: "Teams",
+                                             subtitleText: "Learn more about your favorite teams and players. ")
         let page3 = OnboardingVC(imageName: "rule",
-                                             titleText: "Have fun",
-                                             subtitleText: "Level Up and have fun building mobile apps.")
+                                             titleText: "Rules",
+                                             subtitleText: "Focus on game")
         
         pages.append(page1)
         pages.append(page2)
@@ -113,17 +112,18 @@ extension OnboardingContainerVC {
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: nextButton.trailingAnchor, multiplier: 2),
             
             doneButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: doneButton.trailingAnchor, multiplier: 2)
         ])
         
         // for animations
         pageControlBottomAnchor = view.bottomAnchor.constraint(equalToSystemSpacingBelow: pageControl.bottomAnchor, multiplier: 2)
         skipButtonTopAnchor = skipButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2)
         nextButtonTopAnchor = nextButton.topAnchor.constraint(equalToSystemSpacingBelow: view.safeAreaLayoutGuide.topAnchor, multiplier: 2)
+        doneButtonTrailingAnchor = view.trailingAnchor.constraint(equalToSystemSpacingAfter: doneButton.trailingAnchor, multiplier: 2)
         
         pageControlBottomAnchor?.isActive = true
         skipButtonTopAnchor?.isActive = true
         nextButtonTopAnchor?.isActive = true
+        doneButtonTrailingAnchor?.isActive = true
     }
 }
 
@@ -173,17 +173,19 @@ extension OnboardingContainerVC: UIPageViewControllerDelegate {
     }
     
     private func hideControls() {
+        doneButtonTrailingAnchor?.constant = 16
         pageControlBottomAnchor?.constant = -80
         skipButtonTopAnchor?.constant = -80
         nextButtonTopAnchor?.constant = -80
+        
         doneButton.isHidden = false
     }
 
     private func showControls() {
+        doneButtonTrailingAnchor?.constant = -80
         pageControlBottomAnchor?.constant = 16
         skipButtonTopAnchor?.constant = 16
         nextButtonTopAnchor?.constant = 16
-        doneButton.isHidden = true
     }
 }
 

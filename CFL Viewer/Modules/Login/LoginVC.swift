@@ -103,7 +103,7 @@ extension LoginVC {
         subtitleLabel.textAlignment = .center
         subtitleLabel.font = UIFont(name: "Noteworthy-Light", size: 24)
         subtitleLabel.adjustsFontForContentSizeCategory = true
-        subtitleLabel.text = "puTIN вмер!"
+        subtitleLabel.text = "This is our league"
         subtitleLabel.numberOfLines = 0
         subtitleLabel.alpha = 0
         subtitleLabel.textColor = .white
@@ -111,6 +111,7 @@ extension LoginVC {
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         signInButton.configuration = .filled()
         signInButton.configuration?.imagePadding = 8
+        signInButton.configuration?.baseBackgroundColor = .systemRed
         signInButton.setTitle("Sign In", for: [])
         signInButton.addTarget(self, action: #selector(signInTapped), for: .primaryActionTriggered)
         
@@ -128,7 +129,7 @@ extension LoginVC {
         
         authStackView.translatesAutoresizingMaskIntoConstraints = false
         authStackView.axis = .horizontal
-        authStackView.spacing = 20
+        authStackView.spacing = 40
     }
     
     private func layout() {
@@ -154,7 +155,7 @@ extension LoginVC {
             titleLabel.heightAnchor.constraint(equalToConstant: 34),
             subtitleLabel.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 2),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: subtitleLabel.trailingAnchor, multiplier: 1),
-            subtitleLabel.heightAnchor.constraint(equalToConstant: 34),
+            subtitleLabel.heightAnchor.constraint(equalToConstant: 36),
         ])
         
         NSLayoutConstraint.activate([
