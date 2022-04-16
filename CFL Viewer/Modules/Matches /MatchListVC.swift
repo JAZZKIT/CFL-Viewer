@@ -8,20 +8,29 @@
 import UIKit
 
 class MatchListVC: UIViewController {
-
+    
     let tableView = UITableView()
     
     var collectionVC: ChipsCollectionVC?
     
+    let refreshControll = UIRefreshControl()
+    
+    var selectedYear = "2015"
+    
+    #warning("but")
     let but = UIButton(type: .system)
     
     var matchList: [MatchList] = []
+    
+    var isLoaded = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
         layout()
         configureTableView()
+        configureSkeletons()
+        configureRefreshContol()
         getMatch(in: "2015")
     }
     
@@ -38,26 +47,30 @@ class MatchListVC: UIViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         
-       tableView.register(MatchCell.self, forCellReuseIdentifier: MatchCell.reuseID)
+        tableView.register(MatchCell.self, forCellReuseIdentifier: MatchCell.reuseID)
+        tableView.register(SkeletonCell.self, forCellReuseIdentifier: SkeletonCell.reuseID)
     }
     
     private func getMatch(in year: String) {
         NetworkManager.shared.getMatches(in: year) { [weak self] result in
             guard let self = self else { return }
-
+            
             switch result {
             case .success(let match):
                 self.matchList = match.data
+                self.isLoaded = true
                 DispatchQueue.main.async { self.tableView.reloadData() }
             case .failure(let error):
                 self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
             }
+            
+            self.tableView.refreshControl?.endRefreshing()
         }
     }
 }
 
 extension MatchListVC {
-    func layout() {
+    private func layout() {
         guard let collectionView = collectionVC?.collectionView else { return }
         
         view.addSubview(tableView)
@@ -78,6 +91,18 @@ extension MatchListVC {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
+    
+    private func configureSkeletons() {
+        let row = MatchList.makeSkeleton()
+        matchList = Array(repeating: row, count: 5)
+        //configureTableCells(with: accounts)
+    }
+    
+    private func configureRefreshContol() {
+        refreshControll.tintColor = .systemRed
+        refreshControll.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
+        tableView.refreshControl = refreshControll
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -90,8 +115,15 @@ extension MatchListVC: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension MatchListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MatchCell.reuseID, for: indexPath) as! MatchCell
-        cell.set(match: matchList[indexPath.row])
+        
+        if isLoaded {
+            let cell = tableView.dequeueReusableCell(withIdentifier: MatchCell.reuseID, for: indexPath) as! MatchCell
+            cell.set(match: matchList[indexPath.row])
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: SkeletonCell.reuseID, for: indexPath) as! SkeletonCell
+        
         return cell
     }
 }
@@ -100,6 +132,22 @@ extension MatchListVC: UITableViewDelegate {
 extension MatchListVC: ChipsCollectionVCDelegate {
     func slectedYear(year: String?) {
         guard let year = year else { return }
+        selectedYear = year
         getMatch(in: year)
+    }
+}
+
+// MARK: - Actions
+extension MatchListVC {
+    @objc func refreshContent() {
+        reset()
+        configureSkeletons()
+        tableView.reloadData()
+        getMatch(in: selectedYear)
+    }
+    
+    private func reset() {
+        matchList = []
+        isLoaded = false
     }
 }

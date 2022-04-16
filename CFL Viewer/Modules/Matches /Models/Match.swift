@@ -29,6 +29,10 @@ struct MatchList: Codable {
         case team1 = "team_1"
         case team2 = "team_2"
     }
+    
+    static func makeSkeleton() -> MatchList {
+        return MatchList(dateStart: "2", season: nil, eventType: nil, eventStatus: nil, venue: nil, team1: nil, team2: nil)
+    }
 }
 
 struct Team: Codable {
@@ -39,3 +43,4 @@ struct Team: Codable {
 struct EventInfo: Codable {
     let name: String?
 }
+

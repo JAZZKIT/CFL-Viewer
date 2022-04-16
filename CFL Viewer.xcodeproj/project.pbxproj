@@ -34,6 +34,8 @@
 		B08B924A27E7291900DA6C74 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B08B924927E7291900DA6C74 /* HomeVC.swift */; };
 		B0AF2D7827FB7B6A004AA990 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AF2D7727FB7B6A004AA990 /* UIView+.swift */; };
 		B0B19B1727FC832C00939B94 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B19B1627FC832B00939B94 /* Match.swift */; };
+		B0C8E07E280B1AF300654347 /* SkeletonLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C8E07D280B1AF300654347 /* SkeletonLoadable.swift */; };
+		B0C8E080280B1B3300654347 /* SkeletonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C8E07F280B1B3300654347 /* SkeletonCell.swift */; };
 		B0DCC6202801ECA50076AAE5 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DCC61F2801ECA50076AAE5 /* UIHelper.swift */; };
 		B0DCC6232801F80F0076AAE5 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0DCC6222801F80F0076AAE5 /* Team.swift */; };
 		B0F2C4CD27F7093D00E39E0C /* MatchListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F2C4CC27F7093D00E39E0C /* MatchListVC.swift */; };
@@ -78,6 +80,8 @@
 		B08B924927E7291900DA6C74 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		B0AF2D7727FB7B6A004AA990 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		B0B19B1627FC832B00939B94 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		B0C8E07D280B1AF300654347 /* SkeletonLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLoadable.swift; sourceTree = "<group>"; };
+		B0C8E07F280B1B3300654347 /* SkeletonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonCell.swift; sourceTree = "<group>"; };
 		B0DCC61F2801ECA50076AAE5 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		B0DCC6222801F80F0076AAE5 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		B0F2C4CC27F7093D00E39E0C /* MatchListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchListVC.swift; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				B04F799727F8843700223172 /* MatchCell.swift */,
+				B0C8E07F280B1B3300654347 /* SkeletonCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 				B0513FD327EC9AD90084B913 /* NonceCrypto.swift */,
 				B0513FD527ECCB3F0084B913 /* NSNotificationName.swift */,
 				B0DCC61F2801ECA50076AAE5 /* UIHelper.swift */,
+				B0C8E07D280B1AF300654347 /* SkeletonLoadable.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -454,11 +460,13 @@
 				B0DCC6202801ECA50076AAE5 /* UIHelper.swift in Sources */,
 				B0B19B1727FC832C00939B94 /* Match.swift in Sources */,
 				B05EFCE02800B16900A563CE /* TeamCell.swift in Sources */,
+				B0C8E07E280B1AF300654347 /* SkeletonLoadable.swift in Sources */,
 				B02F485F27FDD87200F23AD5 /* CFError.swift in Sources */,
 				B02F486127FDEBC100F23AD5 /* UIImageView.swift in Sources */,
 				B08B924A27E7291900DA6C74 /* HomeVC.swift in Sources */,
 				B0F668BE2802EF3B0063A0CC /* ChipsCollectionVC.swift in Sources */,
 				B086CF3227E86E8C00E778FB /* LocalState.swift in Sources */,
+				B0C8E080280B1B3300654347 /* SkeletonCell.swift in Sources */,
 				B0F2C4CD27F7093D00E39E0C /* MatchListVC.swift in Sources */,
 				B0708D0427E77CD300911389 /* OnboardingContainerVC.swift in Sources */,
 				B02F485B27FDD49200F23AD5 /* CFAlertVC.swift in Sources */,
