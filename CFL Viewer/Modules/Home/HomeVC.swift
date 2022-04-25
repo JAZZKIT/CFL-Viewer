@@ -52,18 +52,6 @@ class HomeVC: UITabBarController {
 // MARK: - Actions
 extension HomeVC {
     @objc func logoutTapped(sender: UIButton) {
-//        NetworkManager.shared.getMatches(in: "2015") { [weak self] result in
-//            guard let self = self else { return }
-//            //self.dismissLoadingView()
-//
-//            switch result {
-//            case .success(let data):
-//                print(data.data.count)
-//            case .failure(let error):
-//                print(error)
-//                //self.presentGFAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
-//            }
-//        }
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()

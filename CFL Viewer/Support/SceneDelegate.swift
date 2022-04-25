@@ -62,8 +62,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func configureNavigationBar() {
         UINavigationBar.appearance().tintColor = .white
-
-        //UITabBar.appearance().barTintColor = .white
     }
 
 }

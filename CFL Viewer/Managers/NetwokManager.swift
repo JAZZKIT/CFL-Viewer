@@ -19,33 +19,35 @@ class NetworkManager {
     private init() { }
     
     func getMatches(in year: String, completed: @escaping (Result<Match, CFError>) -> Void) {
-        AF.request(baseURL+"/v1/games/\(year)?key=\(key)")
-            .validate()
-            .responseDecodable(of: Match.self) { (response) in
-                
-                guard let matches = response.value else {
-                    completed(.failure(.invalidResponse))
-                    return
-                }
-                
-                completed(.success(matches))
-            }
+        let matchURL = baseURL+"/v1/games/\(year)?key=\(key)"
+        
+        request(path: matchURL, completed: completed)
     }
     
     func getTeams(completed: @escaping (Result<Teams, CFError>) -> Void) {
-        AF.request(baseURL+"/v1/teams?key=\(key)")
+        let teamURL = baseURL+"/v1/teams?key=\(key)"
+        
+        request(path: teamURL, completed: completed)
+    }
+    
+    // MARK: - Module function
+    private func request<T: Decodable>(path: String, completed: @escaping (Result<T, CFError>) -> Void) {
+        AF.request(path)
             .validate()
-            .responseDecodable(of: Teams.self) { response in
-                print(response)
+            .responseDecodable(of: T.self) { response in
                 
-                guard let teams = response.value else {
+                guard let result = response.value else {
                     completed(.failure(.invalidResponse))
                     return
                 }
                 
-                completed(.success(teams))
+                completed(.success(result))
             }
     }
+}
+
+// MARK: - Work with Image
+extension NetworkManager {
     
     func downloadImage(from urlString: String, completed: @escaping (UIImage?) -> Void) {
         let cacheKey = NSString(string: urlString)

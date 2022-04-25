@@ -24,12 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UINavigationBar.appearance().standardAppearance = navigationBarAppearance
             UINavigationBar.appearance().compactAppearance = navigationBarAppearance
             UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
-            
-//            let tabBarApperance = UITabBarAppearance()
-//            tabBarApperance.configureWithOpaqueBackground()
-//            tabBarApperance.backgroundColor = UIColor.systemRed
-//            UITabBar.appearance().scrollEdgeAppearance = tabBarApperance
-//            UITabBar.appearance().standardAppearance = tabBarApperance
         }
         
         // Override point for customization after application launch.
